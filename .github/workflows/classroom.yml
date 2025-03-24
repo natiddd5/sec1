@@ -22,9 +22,40 @@ jobs:
         command: gradle jar
         timeout: 10
         max-score: 0
+    - name: Test1 Output
+      id: test1-output
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test1 Output
+        setup-command: ''
+        command: cat Test1*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile2-oneblock.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test1 Receiver Output
+      id: test1-receiver-output
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test1 Receiver Output
+        setup-command: ''
+        command: cat Test1-Receiver.txt
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BUILD-JARS_RESULTS: "${{steps.build-jars.outputs.result}}"
+        TEST1-OUTPUT_RESULTS: "${{steps.test1-output.outputs.result}}"
+        TEST1-RECEIVER-OUTPUT_RESULTS: "${{steps.test1-receiver-output.outputs.result}}"
       with:
-        runners: build-jars
+        runners: build-jars,test1-output,test1-receiver-output
