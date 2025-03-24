@@ -27,7 +27,8 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Run autotests
-        setup-command: chmod +x automated-encrypt-decrypt-test-script.sh
+        setup-command: cp Receiver/build/libs/*.jar . && cp Sender/build/libs/*.jar
+          . && chmod +x automated-encrypt-decrypt-test-script.sh
         command: "./automated-encrypt-decrypt-test-script.sh"
         timeout: 10
         max-score: 0
