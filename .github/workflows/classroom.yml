@@ -247,7 +247,7 @@ jobs:
       with:
         test-name: TZ
         setup-command: ''
-        command: cat README
+        command: cat README.md
         input: ''
         expected-output: "/d{9}"
         comparison-method: regex
@@ -259,9 +259,33 @@ jobs:
       with:
         test-name: Hours
         setup-command: ''
-        command: cat README
+        command: cat README.md
         input: ''
         expected-output: hours
+        comparison-method: contains
+        timeout: 1
+        max-score: 1
+    - name: Submission date
+      id: submission-date
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Submission date
+        setup-command: ''
+        command: cat README.md
+        input: ''
+        expected-output: '2025'
+        comparison-method: contains
+        timeout: 1
+        max-score: 1
+    - name: Reflection
+      id: reflection
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Reflection
+        setup-command: ''
+        command: cat README.md
+        input: ''
+        expected-output: Reflection
         comparison-method: contains
         timeout: 1
         max-score: 1
@@ -281,5 +305,7 @@ jobs:
         JAVADOC_RESULTS: "${{steps.javadoc.outputs.result}}"
         TZ_RESULTS: "${{steps.tz.outputs.result}}"
         HOURS_RESULTS: "${{steps.hours.outputs.result}}"
+        SUBMISSION-DATE_RESULTS: "${{steps.submission-date.outputs.result}}"
+        REFLECTION_RESULTS: "${{steps.reflection.outputs.result}}"
       with:
-        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs,encrypted-contents,decrypted-contents,javadoc,tz,hours
+        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs,encrypted-contents,decrypted-contents,javadoc,tz,hours,submission-date,reflection
