@@ -31,10 +31,26 @@ jobs:
         command: "./automated-encrypt-decrypt-test-script.sh"
         timeout: 10
         max-score: 0
+    - name: Test1 Outputs
+      id: test1-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test1 Outputs
+        setup-command: ''
+        command: cat Test1*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile2-oneblock.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BUILD-JARS_RESULTS: "${{steps.build-jars.outputs.result}}"
         RUN-AUTOTESTS_RESULTS: "${{steps.run-autotests.outputs.result}}"
+        TEST1-OUTPUTS_RESULTS: "${{steps.test1-outputs.outputs.result}}"
       with:
-        runners: build-jars,run-autotests
+        runners: build-jars,run-autotests,test1-outputs
