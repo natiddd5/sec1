@@ -29,7 +29,7 @@ jobs:
         test-name: Run autotests
         setup-command: cp Receiver/build/libs/*.jar . && cp Sender/build/libs/*.jar
           . && chmod +x automated-encrypt-decrypt-test-script.sh
-        command: "./automated-encrypt-decrypt-test-script.sh"
+        command: "./automated-encrypt-decrypt-test-script.sh > all-test-output.txt"
         timeout: 10
         max-score: 0
     - name: Test1 Outputs
