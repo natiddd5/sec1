@@ -136,6 +136,54 @@ jobs:
         comparison-method: exact
         timeout: 1
         max-score: 1
+    - name: Encrypted contents
+      id: encrypted-contents
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Encrypted contents
+        setup-command: ''
+        command: cat all-test-output.txt
+        input: ''
+        expected-output: |-
+          encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-encrypted.pdf: OK
+          encryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test15-Alabama-DES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-encrypted.pdf: OK
+          encryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test28-TestFile1-Gutenberg-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test29-Alabama-AES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test30-Alaska-AES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test31-TestFile6-onelongersblocks-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test32-TestFile7-twobetterthanone-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test33-TestFile8-onelongerblocktwoisbetterthanone-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test34-TestFile1-Gutenberg-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test35-Alabama-AES-GCM-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test36-Alaska-AES-GCM-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-encrypted.txt: OK
+        comparison-method: contains
+        timeout: 2
+        max-score: 37
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -147,5 +195,6 @@ jobs:
         TEST-37-AND-38-OUTPUTS_RESULTS: "${{steps.test-37-and-38-outputs.outputs.result}}"
         TEST-39-AND-40-OUTPUTS_RESULTS: "${{steps.test-39-and-40-outputs.outputs.result}}"
         TEST-41-42-AND-43-OUTPUTS_RESULTS: "${{steps.test-41-42-and-43-outputs.outputs.result}}"
+        ENCRYPTED-CONTENTS_RESULTS: "${{steps.encrypted-contents.outputs.result}}"
       with:
-        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs
+        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs,encrypted-contents
