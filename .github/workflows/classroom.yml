@@ -282,11 +282,12 @@ jobs:
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: Reflection
-        setup-command: ''
-        command: cat README.md
+        setup-command: cat README.md
+        command: awk '/## Reflection/{found=1} found' README.md | tr -s ' ' '\n' |
+          wc -w
         input: ''
-        expected-output: Reflection
-        comparison-method: contains
+        expected-output: "\\d{3}"
+        comparison-method: regex
         timeout: 1
         max-score: 1
     - name: Autograding Reporter
