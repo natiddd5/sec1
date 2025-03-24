@@ -46,11 +46,105 @@ jobs:
         comparison-method: exact
         timeout: 1
         max-score: 1
+    - name: Test2 Outputs
+      id: test2-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test2 Outputs
+        setup-command: ''
+        command: cat Test2*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile2-oneblock.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test3 Outputs
+      id: test3-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test3 Outputs
+        setup-command: ''
+        command: cat Test3-*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile4-twoblockisbetter.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 37 and 38 Outputs
+      id: test-37-and-38-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 37 and 38 Outputs
+        setup-command: ''
+        command: cat Test37-* Test38-*
+        input: ''
+        expected-output: |-
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error parsing destination address: abcd.0.0.1: Name or service not known
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 39 and 40 Outputs
+      id: test-39-and-40-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 39 and 40 Outputs
+        setup-command: ''
+        command: cat Test39-* Test40-*
+        input: ''
+        expected-output: |-
+          Invalid algorithm chosen: acm/gcm/nopadding
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error: Invalid key when encrypting: Invalid AES key length: 13 bytes
+          Error sending file: Connection refused
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 41 42 and 43 Outputs
+      id: test-41-42-and-43-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 41 42 and 43 Outputs
+        setup-command: ''
+        command: cat Test41* Test42* Test43*
+        input: ''
+        expected-output: |-
+          Invalid algorithm chosen: acm/gcm/nopadding
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error: Invalid key when encrypting: Invalid AES key length: 13 bytes
+          Error sending file: Connection refused
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BUILD-JARS_RESULTS: "${{steps.build-jars.outputs.result}}"
         RUN-AUTOTESTS_RESULTS: "${{steps.run-autotests.outputs.result}}"
         TEST1-OUTPUTS_RESULTS: "${{steps.test1-outputs.outputs.result}}"
+        TEST2-OUTPUTS_RESULTS: "${{steps.test2-outputs.outputs.result}}"
+        TEST3-OUTPUTS_RESULTS: "${{steps.test3-outputs.outputs.result}}"
+        TEST-37-AND-38-OUTPUTS_RESULTS: "${{steps.test-37-and-38-outputs.outputs.result}}"
+        TEST-39-AND-40-OUTPUTS_RESULTS: "${{steps.test-39-and-40-outputs.outputs.result}}"
+        TEST-41-42-AND-43-OUTPUTS_RESULTS: "${{steps.test-41-42-and-43-outputs.outputs.result}}"
       with:
-        runners: build-jars,run-autotests,test1-outputs
+        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs
