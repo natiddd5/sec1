@@ -3,7 +3,9 @@
     import il.ac.kinneret.encryptsender.sender.util.ByteManipulation;
     import il.ac.kinneret.encryptsender.sender.util.Constants;
 
+    //Nati Shen, Gadi Yohannan
     public class Main {
+
 
         private static int MAX_ARGS = 7;
         public static void main(String[] args) {
@@ -33,7 +35,7 @@
                 }
             }
 
-            System.out.printf("dest=%s port=%d suite=%s infile=%s key=%s iv=%s%n", dest, port, suite, infile, keyHex, ivHex);
+//            System.out.printf("dest=%s port=%d suite=%s infile=%s key=%s iv=%s%n", dest, port, suite, infile, keyHex, ivHex);
 
             if (dest == null || port < 0 || suite == null || infile == null
                     || keyHex == null || ivHex == null) {

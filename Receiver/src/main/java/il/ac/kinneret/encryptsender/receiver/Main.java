@@ -45,7 +45,7 @@ public class Main {
             System.exit(1);
         }
 
-        System.out.printf("ip=%s port=%d suite=%s tempfile=%s outfile=%s key=%s iv=%s%n", ip, port, suite, tempfile, outfile, keyHex, ivHex);
+//        System.out.printf("ip=%s port=%d suite=%s tempfile=%s outfile=%s key=%s iv=%s%n", ip, port, suite, tempfile, outfile, keyHex, ivHex);
 
         byte[] key, iv;
         try {
