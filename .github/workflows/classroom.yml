@@ -22,9 +22,291 @@ jobs:
         command: gradle jar
         timeout: 10
         max-score: 0
+    - name: Run autotests
+      id: run-autotests
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Run autotests
+        setup-command: cp Receiver/build/libs/*.jar . && cp Sender/build/libs/*.jar
+          . && chmod +x automated-encrypt-decrypt-test-script.sh
+        command: "./automated-encrypt-decrypt-test-script.sh > all-test-output.txt"
+        timeout: 10
+        max-score: 0
+    - name: Test1 Outputs
+      id: test1-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test1 Outputs
+        setup-command: ''
+        command: cat Test1*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile2-oneblock.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test2 Outputs
+      id: test2-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test2 Outputs
+        setup-command: ''
+        command: cat Test2*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile2-oneblock.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test3 Outputs
+      id: test3-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test3 Outputs
+        setup-command: ''
+        command: cat Test3-*
+        input: ''
+        expected-output: |-
+          Received encrypted file: encryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile4-twoblockisbetter.txt
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 37 and 38 Outputs
+      id: test-37-and-38-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 37 and 38 Outputs
+        setup-command: ''
+        command: cat Test37-* Test38-*
+        input: ''
+        expected-output: |-
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error parsing destination address: abcd.0.0.1: Name or service not known
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 39 and 40 Outputs
+      id: test-39-and-40-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 39 and 40 Outputs
+        setup-command: ''
+        command: cat Test39-* Test40-*
+        input: ''
+        expected-output: |-
+          Invalid algorithm chosen: acm/gcm/nopadding
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error: Invalid key when encrypting: Invalid AES key length: 13 bytes
+          Error sending file: Connection refused
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Test 41 42 and 43 Outputs
+      id: test-41-42-and-43-outputs
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Test 41 42 and 43 Outputs
+        setup-command: ''
+        command: cat Test41* Test42* Test43*
+        input: ''
+        expected-output: |-
+          Invalid algorithm chosen: acm/gcm/nopadding
+          Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p
+          iv and key in hexadecimal
+          suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)
+          dest must be a valid IP address
+          Error: Invalid key when encrypting: Invalid AES key length: 13 bytes
+          Error sending file: Connection refused
+        comparison-method: exact
+        timeout: 1
+        max-score: 1
+    - name: Encrypted contents
+      id: encrypted-contents
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Encrypted contents
+        setup-command: ''
+        command: cat all-test-output.txt
+        input: ''
+        expected-output: |-
+          encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-encrypted.pdf: OK
+          encryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test15-Alabama-DES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-encrypted.pdf: OK
+          encryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test28-TestFile1-Gutenberg-AES-CTR-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test29-Alabama-AES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test30-Alaska-AES-CTR-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test31-TestFile6-onelongersblocks-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test32-TestFile7-twobetterthanone-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test33-TestFile8-onelongerblocktwoisbetterthanone-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test34-TestFile1-Gutenberg-AES-GCM-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test35-Alabama-AES-GCM-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test36-Alaska-AES-GCM-NoPadding-encrypted.pdf: OK
+          encryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-encrypted.txt: OK
+          encryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-encrypted.txt: OK
+          encryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-encrypted.txt: OK
+        comparison-method: contains
+        timeout: 2
+        max-score: 37
+    - name: Decrypted contents
+      id: decrypted-contents
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Decrypted contents
+        setup-command: ''
+        command: cat all-test-output.txt
+        input: ''
+        expected-output: |-
+          decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-decrypted.pdf: OK
+          decryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test15-Alabama-DES-CTR-NoPadding-decrypted.pdf: OK
+          decryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-decrypted.pdf: OK
+          decryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test28-TestFile1-Gutenberg-AES-CTR-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test29-Alabama-AES-CTR-NoPadding-decrypted.pdf: OK
+          decryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test30-Alaska-AES-CTR-NoPadding-decrypted.pdf: OK
+          decryptedfiles/Test31-TestFile6-onelongersblocks-AES-GCM-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test32-TestFile7-twobetterthanone-AES-GCM-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test33-TestFile8-onelongerblocktwoisbetterthanone-AES-GCM-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test34-TestFile1-Gutenberg-AES-GCM-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test35-Alabama-AES-GCM-NoPadding-decrypted.pdf: OK
+          decryptedfiles/Test36-Alaska-AES-GCM-NoPadding-decrypted.pdf: OK
+          decryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-decrypted.txt: OK
+          decryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-decrypted.txt: OK
+          decryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-decrypted.txt: OK
+        comparison-method: contains
+        timeout: 2
+        max-score: 37
+    - name: javadoc
+      id: javadoc
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: javadoc
+        setup-command: ''
+        command: gradle javadoc
+        timeout: 5
+        max-score: 0
+    - name: TZ
+      id: tz
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: TZ
+        setup-command: ''
+        command: cat README.md
+        input: ''
+        expected-output: "/d{9}"
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Hours
+      id: hours
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Hours
+        setup-command: ''
+        command: cat README.md
+        input: ''
+        expected-output: hours
+        comparison-method: contains
+        timeout: 1
+        max-score: 1
+    - name: Submission date
+      id: submission-date
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Submission date
+        setup-command: ''
+        command: cat README.md
+        input: ''
+        expected-output: '2025'
+        comparison-method: contains
+        timeout: 1
+        max-score: 1
+    - name: Reflection
+      id: reflection
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Reflection
+        setup-command: cat README.md
+        command: awk '/## Reflection/{found=1} found' README.md | tr -s ' ' '\n' |
+          wc -w
+        input: ''
+        expected-output: "\\d{3}"
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BUILD-JARS_RESULTS: "${{steps.build-jars.outputs.result}}"
+        RUN-AUTOTESTS_RESULTS: "${{steps.run-autotests.outputs.result}}"
+        TEST1-OUTPUTS_RESULTS: "${{steps.test1-outputs.outputs.result}}"
+        TEST2-OUTPUTS_RESULTS: "${{steps.test2-outputs.outputs.result}}"
+        TEST3-OUTPUTS_RESULTS: "${{steps.test3-outputs.outputs.result}}"
+        TEST-37-AND-38-OUTPUTS_RESULTS: "${{steps.test-37-and-38-outputs.outputs.result}}"
+        TEST-39-AND-40-OUTPUTS_RESULTS: "${{steps.test-39-and-40-outputs.outputs.result}}"
+        TEST-41-42-AND-43-OUTPUTS_RESULTS: "${{steps.test-41-42-and-43-outputs.outputs.result}}"
+        ENCRYPTED-CONTENTS_RESULTS: "${{steps.encrypted-contents.outputs.result}}"
+        DECRYPTED-CONTENTS_RESULTS: "${{steps.decrypted-contents.outputs.result}}"
+        JAVADOC_RESULTS: "${{steps.javadoc.outputs.result}}"
+        TZ_RESULTS: "${{steps.tz.outputs.result}}"
+        HOURS_RESULTS: "${{steps.hours.outputs.result}}"
+        SUBMISSION-DATE_RESULTS: "${{steps.submission-date.outputs.result}}"
+        REFLECTION_RESULTS: "${{steps.reflection.outputs.result}}"
       with:
-        runners: build-jars
+        runners: build-jars,run-autotests,test1-outputs,test2-outputs,test3-outputs,test-37-and-38-outputs,test-39-and-40-outputs,test-41-42-and-43-outputs,encrypted-contents,decrypted-contents,javadoc,tz,hours,submission-date,reflection
