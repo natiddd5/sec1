@@ -3,6 +3,7 @@ package il.ac.kinneret.encryptsender.receiver;
 import il.ac.kinneret.encryptsender.receiver.util.Constants;
 
 import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
@@ -19,8 +20,9 @@ public class Receiver {
     private final String outfile;
     private final byte[] key;
     private final byte[] iv;
+    private final int tagLength; // used for GCM mode
 
-    public Receiver(String ip, int port, String suite, String tempfile, String outfile, byte[] key, byte[] iv) {
+    public Receiver(String ip, int port, String suite, String tempfile, String outfile, byte[] key, byte[] iv, int tagLength) {
         this.ip = ip;
         this.port = port;
         this.suite = suite;
@@ -28,6 +30,7 @@ public class Receiver {
         this.outfile = outfile;
         this.key = key;
         this.iv = iv;
+        this.tagLength = tagLength;
     }
 
     public void receiveAndDecrypt() {
@@ -57,8 +60,15 @@ public class Receiver {
                 String algorithm = suite.split("/")[0];
                 Cipher cipher = Cipher.getInstance(suite);
                 SecretKeySpec secretKey = new SecretKeySpec(key, algorithm);
-                IvParameterSpec ivSpec = new IvParameterSpec(iv);
-                cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+
+                // Use GCMParameterSpec for GCM mode; for other modes, use IvParameterSpec.
+                if (suite.toUpperCase().contains("GCM")) {
+                    GCMParameterSpec gcmSpec = new GCMParameterSpec(tagLength, iv);
+                    cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmSpec);
+                } else {
+                    IvParameterSpec ivSpec = new IvParameterSpec(iv);
+                    cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+                }
 
                 byte[] buffer = new byte[4096];
                 int bytesRead;
