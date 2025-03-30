@@ -1,6 +1,18 @@
-Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt\n' +
-        'Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt\n' +
-        'Sent file tests/TestFile2-oneblock.txt
-Received encrypted file: encryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-encrypted.txt\n' +
-'Finished decrypting file: decryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-decrypted.txt\n' +
-'Sent file tests/TestFile3-twoblock.txt'
+ Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
+        'iv and key in hexadecimal\n' +
+        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
+        'dest must be a valid IP address\n' +
+        'Error parsing destination address: abcd.0.0.1: Name or service not known\n' +
+        'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
+        'iv and key in hexadecimal\n' +
+        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
+        'dest must be a valid IP address
+        --------------------------
+        Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
+        'iv and key in hexadecimal\n' +
+        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
+        'dest must be a valid IP addressError parsing destination address: abcd.0.0.1: Name or service not known\n' +
+        'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
+        'iv and key in hexadecimal\n' +
+        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
+        'dest must be a valid IP address',

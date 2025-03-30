@@ -67,7 +67,7 @@
         }
 
         public static void showUsage(String errorMsg) {
-            System.out.print(errorMsg+Constants.SENDER_USAGE);
+            System.out.println(errorMsg+Constants.SENDER_USAGE);
             System.exit(0);
         }
 
