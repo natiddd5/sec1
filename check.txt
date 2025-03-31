@@ -1,17 +1,11 @@
- Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
-        'iv and key in hexadecimal\n' +
-        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
-        'dest must be a valid IP address\n' +
-        'Error parsing destination address: abcd.0.0.1: Name or service not known\n' +
+Invalid algorithm chosen: acm/gcm/nopadding\n' +
         'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
         'iv and key in hexadecimal\n' +
         'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
-        'dest must be a valid IP address
-        --------------------------
-        Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
-        'iv and key in hexadecimal\n' +
-        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
-        'dest must be a valid IP addressError parsing destination address: abcd.0.0.1: Name or service not known\n' +
+        'dest must be a valid IP address\n' +
+        'Error: Invalid key when encrypting: Invalid AES key length: 13 bytes\n' +
+        'Error sending file: Connection refused
+Invalid algorithm chosen: ACM/GCM/NoPadding\n' +
         'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
         'iv and key in hexadecimal\n' +
         'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +

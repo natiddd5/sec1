@@ -41,6 +41,25 @@ public class Sender {
         extractCipherMetadataFromSuite(suite);
     }
 
+    private void validateKey() {
+        // Check for valid key lengths based on algorithm.
+        if (algorithm.equalsIgnoreCase("AES")) {
+            // AES supports 16, 24, or 32 bytes key lengths.
+            if (key.length != 16 && key.length != 24 && key.length != 32) {
+                System.out.printf("Error: Invalid key length for AES: %d bytes\n", key.length);
+                System.out.printf("Error sending file: Connection refused\n");
+                System.exit(0);
+            }
+        } else if (algorithm.equalsIgnoreCase("DES")) {
+            // DES requires an 8-byte key.
+            if (key.length != 8) {
+                System.out.printf("Error: Invalid key length for DES: %d bytes\n", key.length);
+                System.out.printf("Error sending file: Connection refused\n");
+                System.exit(0);
+            }
+        }
+    }
+
     private void extractCipherMetadataFromSuite(String suite) {
         // Expecting a suite in the form "AES/CBC/NoPadding" or "AES/GCM/NoPadding"
         algorithm = suite.split("/")[0];
@@ -58,6 +77,8 @@ public class Sender {
     public void sendMessage() {
         try (Socket socket = new Socket(dest, port);
              FileInputStream fileInputStream = new FileInputStream(infile)) {
+
+            validateKey();
 
             Cipher cipher = Cipher.getInstance(suite);
             SecretKeySpec secretKeySpec = new SecretKeySpec(key, algorithm);
@@ -152,20 +173,15 @@ public class Sender {
                     algorithmUpper,
                     key.length
             );
-            Main.showUsage(message);
+            String msg2 =("Error sending file: Connection refused\n");
+            System.out.printf(message + msg2);
+            System.exit(0);
         } catch (NoSuchPaddingException e) {
             Main.showUsage(Constants.INVALID_PADDING_ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         } catch (InvalidAlgorithmParameterException e) {
-            if (!algorithm.equals("AES") && !algorithm.equals("DES")) {
-                Main.showUsage(String.format(Constants.INVALID_ALGORITHM_CHOSEN, suite));
-            } else {
-                System.out.printf("Error: Invalid key when encrypting: Invalid " + algorithm +
-                        " key length: " + key.length + " bytes\n");
-                System.out.printf("Error sending file: Connection refused\n");
-                System.exit(0);
-            }
+            throw new RuntimeException(e);
         } catch (BadPaddingException e) {
             throw new RuntimeException(e);
         } catch (IllegalBlockSizeException e) {
