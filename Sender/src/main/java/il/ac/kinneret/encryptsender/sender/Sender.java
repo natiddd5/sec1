@@ -44,7 +44,7 @@ public class Sender {
     private void validateKey() {
         // Check for valid key lengths based on algorithm.
         if (algorithm.equalsIgnoreCase("AES")) {
-            // AES supports 16, 24, or 32 bytes key lengths.
+            // AES supports 16, 24, or 32 bytes key lengths. (?)
             if (key.length != 16 && key.length != 24 && key.length != 32) {
                 System.out.printf("Error: Invalid key length for AES: %d bytes\n", key.length);
                 System.out.printf("Error sending file: Connection refused\n");
