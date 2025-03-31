@@ -1,12 +1,147 @@
-Invalid algorithm chosen: acm/gcm/nopadding\n' +
-        'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
-        'iv and key in hexadecimal\n' +
-        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
-        'dest must be a valid IP address\n' +
-        'Error: Invalid key when encrypting: Invalid AES key length: 13 bytes\n' +
-        'Error sending file: Connection refused
-Invalid algorithm chosen: ACM/GCM/NoPadding\n' +
-        'Usage: -infile=path/to/file -iv=iv -key=key -suite=cipher/mode/padding -dest=ip -port=p\n' +
-        'iv and key in hexadecimal\n' +
-        'suite must be a valid cipher suite (e.g. AES/CBC/NoPadding)\n' +
-        'dest must be a valid IP address',
+encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test15-Alabama-DES-CTR-NoPadding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test28-TestFile1-Gutenberg-AES-CTR-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test29-Alabama-AES-CTR-NoPadding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test3-TestFile4-twoblockisbetter-DES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test30-Alaska-AES-CTR-NoPadding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test31-TestFile6-onelongersblocks-AES-GCM-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test32-TestFile7-twobetterthanone-AES-GCM-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test33-TestFile8-onelongerblocktwoisbetterthanone-AES-GCM-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test34-TestFile1-Gutenberg-AES-GCM-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test35-Alabama-AES-GCM-NoPadding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test36-Alaska-AES-GCM-NoPadding-encrypted.pdf: OK\n' +
+        'encryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-encrypted.txt: OK\n' +
+        'encryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-encrypted.txt: OK
+-------------------------------------------
+Test1\n' +
+        'Test2\n' +
+        'Test3\n' +
+        'Test4\n' +
+        'Sent file tests/TestFile6-onelongersblocks.txt\n' +
+        'Received encrypted file: encryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test4-TestFile6-onelongersblocks-DES-CBC-NoPadding-decrypted.txt\n' +
+        'Test5\n' +
+        'Sent file tests/TestFile2-oneblock.txt\n' +
+        'Received encrypted file: encryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test5-TestFile2-oneblock-DES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test6\n' +
+        'Sent file tests/TestFile5-one block that is not even.txt\n' +
+        'Received encrypted file: encryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test6-TestFile5-one block that is not even-DES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test7\n' +
+        'Sent file tests/TestFile3-twoblock.txt\n' +
+        'Received encrypted file: encryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test7-TestFile3-twoblock-DES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test8\n' +
+        'Sent file tests/TestFile4-twoblockisbetter.txt\n' +
+        'Received encrypted file: encryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test8-TestFile4-twoblockisbetter-DES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test9\n' +
+        'Sent file tests/TestFile1-Gutenberg.txt\n' +
+        'Received encrypted file: encryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test9-TestFile1-Gutenberg-DES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test10\n' +
+        'Sent file tests/Alabama.pdf\n' +
+        'Received encrypted file: encryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-encrypted.pdf\n' +
+        'Finished decrypting file: decryptedfiles/Test10-Alabama-DES-CBC-PKCS5Padding-decrypted.pdf\n' +
+        'Test11\n' +
+        'Sent file tests/TestFile2-oneblock.txt\n' +
+        'Received encrypted file: encryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test11-TestFile2-oneblock-DES-CTR-NoPadding-decrypted.txt\n' +
+        'Test12\n' +
+        'Sent file tests/TestFile3-twoblock.txt\n' +
+        'Received encrypted file: encryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test12-TestFile3-twoblock-DES-CTR-NoPadding-decrypted.txt\n' +
+        'Test13\n' +
+        'Sent file tests/TestFile4-twoblockisbetter.txt\n' +
+        'Received encrypted file: encryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test13-TestFile4-twoblockisbetter-DES-CTR-NoPadding-decrypted.txt\n' +
+        'Test14\n' +
+        'Sent file tests/TestFile1-Gutenberg.txt\n' +
+        'Received encrypted file: encryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test14-TestFile1-Gutenberg-DES-CTR-NoPadding-decrypted.txt\n' +
+        'Test15\n' +
+        'Sent file tests/Alabama.pdf\n' +
+        'Received encrypted file: encryptedfiles/Test15-Alabama-DES-CTR-NoPadding-encrypted.pdf\n' +
+        'Finished decrypting file: decryptedfiles/Test15-Alabama-DES-CTR-NoPadding-decrypted.pdf\n' +
+        'Test16\n' +
+        'Sent file tests/TestFile6-onelongersblocks.txt\n' +
+        'Received encrypted file: encryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test16-TestFile6-onelongersblocks-AES-CBC-NoPadding-decrypted.txt\n' +
+        'Test17\n' +
+        'Sent file tests/TestFile7-twobetterthanone.txt\n' +
+        'Received encrypted file: encryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test17-TestFile7-twobetterthanone-AES-CBC-NoPadding-decrypted.txt\n' +
+        'Test18\n' +
+        'Sent file tests/TestFile8-onelongerblocktwoisbetterthanone.txt\n' +
+        'Received encrypted file: encryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test18-TestFile8-onelongerblocktwoisbetterthanone-AES-CBC-NoPadding-decrypted.txt\n' +
+        'Test19\n' +
+        'Sent file tests/TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup.txt\n' +
+        'Received encrypted file: encryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test19-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-NoPadding-decrypted.txt\n' +
+        'Test20\n' +
+        'Sent file tests/TestFile9-twobetterthanonequietonthewesternfront.txt\n' +
+        'Received encrypted file: encryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test20-TestFile9-twobetterthanonequietonthewesternfront-AES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test21\n' +
+        'Sent file tests/TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup.txt\n' +
+        'Received encrypted file: encryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test21-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test22\n' +
+        'Sent file tests/TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup.txt\n' +
+        'Received encrypted file: encryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test22-TestFile10-twobetterthanonequietonthewesternfrontuntiitsoverandtingsbreakup-AES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test23\n' +
+        'Sent file tests/TestFile1-Gutenberg.txt\n' +
+        'Received encrypted file: encryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test23-TestFile1-Gutenberg-AES-CBC-PKCS5Padding-decrypted.txt\n' +
+        'Test24\n' +
+        'Sent file tests/Alabama.pdf\n' +
+        'Received encrypted file: encryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-encrypted.pdf\n' +
+        'Finished decrypting file: decryptedfiles/Test24-Alabama-AES-CBC-PKCS5Padding-decrypted.pdf\n' +
+        'Test25\n' +
+        'Sent file tests/TestFile6-onelongersblocks.txt\n' +
+        'Received encrypted file: encryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test25-TestFile6-onelongersblocks-AES-CTR-NoPadding-decrypted.txt\n' +
+        'Test26\n' +
+        'Sent file tests/TestFile7-twobetterthanone.txt\n' +
+        'Received encrypted file: encryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test26-TestFile7-twobetterthanone-AES-CTR-NoPadding-decrypted.txt\n' +
+        'Test27\n' +
+        'Sent file tests/TestFile8-onelongerblocktwoisbetterthanone.txt\n' +
+        'Received encrypted file: encryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-encrypted.txt\n' +
+        'Finished decrypting file: decryptedfiles/Test27-TestFile8-onelongerblocktwoisbetterthanone-AES-CTR-NoPadding-decrypted.txt\n' +
+        'Test28\n' +
+        'Sent file tests/TestFile1-Gutenberg.txt\n' +
+        'Received encrypted file: encryptedfiles/Test28'... 8208 more characters,
+      test_code: 'cat all-test-output.txt <stdin>',
+      filename: '',
+      line_no: 0,
+      execution_time: '0.004s',
+      score: 0
+    }
+  ]
+}
