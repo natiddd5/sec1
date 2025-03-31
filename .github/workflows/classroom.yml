@@ -56,9 +56,9 @@ jobs:
         command: cat Test2*
         input: ''
         expected-output: |-
-          Received encrypted file: encryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-encrypted.txt
-          Finished decrypting file: decryptedfiles/Test1-TestFile2-oneblock-DES-CBC-NoPadding-decrypted.txt
-          Sent file tests/TestFile2-oneblock.txt
+          Received encrypted file: encryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-encrypted.txt
+          Finished decrypting file: decryptedfiles/Test2-TestFile3-twoblock-DES-CBC-NoPadding-decrypted.txt
+          Sent file tests/TestFile3-twoblock.txt
         comparison-method: exact
         timeout: 1
         max-score: 1
